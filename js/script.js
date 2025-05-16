@@ -19,7 +19,7 @@ document.querySelector("#search-button").onclick = (e) => {
 const shoppingCart = document.querySelector(".shopping-cart");
 document.querySelector("#shopping-cart-button").onclick = (e) => {
   shoppingCart.classList.toggle("active");
-  e.priventDefault();
+  e.preventDefault();
 };
 
 //klik di luar elemen

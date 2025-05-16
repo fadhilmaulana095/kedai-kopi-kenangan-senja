@@ -25,8 +25,15 @@
     ></script>
 
     <!-- App -->
-    <script src="src/app.js"></script>
+    <script src="src/app.js" async></script>
+
+    <!-- midtrans -->
+    <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-YY4YF-yYugFF_77u"></script>
+
   </head>
+
 
   <body>
     <!--navbar star-->
@@ -70,7 +77,7 @@
             <div class="item-detail">
               <h3 x-text="item.name"></h3>
               <div class="item-price">
-                <span x-text="rupiah(item.price)"></span>&times;
+                <span x-text="rupiah(item.price)"></span> &times;
                 <button id="remove" @click="$store.cart.remove(item.id)">
                   &minus;
                 </button>
@@ -90,7 +97,13 @@
         </h4>
 
         <div class="form-container" x-show="$store.cart.items.length">
-          <form action="" id="chekoutForm">
+          <form action="" id="checkoutForm">
+            <input
+              type="hidden"
+              name="items"
+              x-model="JSON.stringify($store.cart.items)"
+            />
+            <input type="hidden" name="total" x-model="$store.cart.total" />
             <h5>Customer Detail</h5>
 
             <label for="name">
@@ -100,21 +113,16 @@
 
             <label for="email">
               <span>Email</span>
-              <input type="email" email="email" id="email" />
+              <input type="email" name="email" id="email" />
             </label>
 
             <label for="phone">
               <span>Phone</span>
-              <input
-                type="number"
-                phone="phone"
-                id="phone"
-                autocomplete="off"
-              />
+              <input type="number" name="phone" id="phone" autocomplete="off" />
             </label>
 
             <button
-              class="checkout-button"
+              class="checkout-button disabled"
               type="submit"
               id="checkout-button"
               value="checkout"
